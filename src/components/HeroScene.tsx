@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { heroPoster, heroVideo, profile } from '../data/profile'
 import { clamp, useSectionProgress } from '../lib/useSectionProgress'
 import { SocialLink } from './SocialLink'
@@ -6,16 +6,14 @@ import { SocialLink } from './SocialLink'
 export function HeroScene() {
   const [sectionRef, progress] = useSectionProgress<HTMLElement>()
   const videoRef = useRef<HTMLVideoElement | null>(null)
-  const metadataReady = useRef(false)
+  const [metadataReady, setMetadataReady] = useState(false)
   const heroStage = Math.round(progress * 100)
   const tilt = progress * 18 - 6
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    const markReady = () => {
-      metadataReady.current = true
-    }
+    const markReady = () => setMetadataReady(true)
     if (video.readyState >= 1) markReady()
     video.addEventListener('loadedmetadata', markReady)
     return () => video.removeEventListener('loadedmetadata', markReady)
@@ -23,11 +21,11 @@ export function HeroScene() {
 
   useEffect(() => {
     const video = videoRef.current
-    if (!video || !metadataReady.current) return
+    if (!video || !metadataReady) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     if (!Number.isFinite(video.duration) || video.duration <= 0) return
     video.currentTime = clamp(progress) * video.duration
-  }, [progress])
+  }, [progress, metadataReady])
 
   return (
     <section ref={sectionRef} className="hero-section" aria-label="maswy profile intro">
