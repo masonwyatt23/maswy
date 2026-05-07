@@ -7,6 +7,11 @@ export function ProjectsSection() {
       <div className="section-heading">
         <p className="kicker">proof of work, lightly unhinged</p>
         <h2>Things I ship when nobody takes the keyboard away.</h2>
+        <div className="meme-strip" aria-hidden="true">
+          <span>ship it, explain later</span>
+          <span>github saw it first</span>
+          <span>founder mode with receipts</span>
+        </div>
       </div>
       <div className="project-rail">
         <div className="project-column">
