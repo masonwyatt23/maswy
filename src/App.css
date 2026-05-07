@@ -11,8 +11,8 @@ a {
   position: relative;
   display: grid;
   min-height: 108svh;
-  grid-template-columns: minmax(0, 0.84fr) minmax(360px, 1.16fr);
-  gap: clamp(18px, 4vw, 72px);
+  grid-template-columns: minmax(0, 0.76fr) minmax(420px, 1.24fr);
+  gap: clamp(28px, 6vw, 104px);
   align-items: center;
   padding: clamp(18px, 4vw, 58px);
   color: #f8f2dc;
@@ -98,11 +98,31 @@ a {
     0 42px 110px rgba(0, 0, 0, 0.52),
     0 0 0 10px rgba(248, 242, 220, 0.04);
   transform: translateY(calc(var(--scroll) * 34px)) rotateX(calc(var(--scroll) * -4deg));
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.12) contrast(1.05);
+}
+
+.video-slot::before,
+.video-slot::after,
+.slot-label,
+.progress-rail,
+.orbit,
+.video-badge {
+  pointer-events: none;
 }
 
 .video-slot::before,
 .video-slot::after {
   position: absolute;
+  z-index: 5;
   content: '';
   border: 2px solid #121212;
   background: #f8f2dc;
@@ -127,7 +147,7 @@ a {
 
 .slot-label {
   position: absolute;
-  z-index: 3;
+  z-index: 6;
   top: 14px;
   right: 14px;
   left: 14px;
@@ -139,15 +159,17 @@ a {
   text-transform: uppercase;
 }
 
-.placeholder-frame {
+.video-badge {
   position: relative;
-  z-index: 2;
+  z-index: 6;
   display: grid;
-  gap: 6px;
+  align-self: end;
+  justify-self: start;
+  gap: 3px;
   place-items: center;
-  width: 74%;
-  aspect-ratio: 1;
-  padding: 22px;
+  width: min(52%, 260px);
+  margin: 0 0 54px 22px;
+  padding: 12px;
   border: 2px solid #121212;
   border-radius: 8px;
   color: #121212;
@@ -159,26 +181,28 @@ a {
   overflow: hidden;
 }
 
-.placeholder-frame span,
-.placeholder-frame small,
+.video-badge span,
+.video-badge small,
 .kicker {
   text-transform: uppercase;
 }
 
-.placeholder-frame span {
+.video-badge span {
   max-width: 100%;
-  font-size: 0.78rem;
+  font-size: 0.58rem;
   font-weight: 800;
 }
 
-.placeholder-frame strong {
+.video-badge strong {
   font-family: var(--display);
-  font-size: clamp(3.3rem, 20vw, 7.7rem);
+  font-size: clamp(2rem, 6vw, 3.2rem);
   line-height: 0.8;
 }
 
-.placeholder-frame small {
+.video-badge small {
   max-width: 18ch;
+  font-size: 0.58rem;
+  line-height: 1.05;
   font-weight: 800;
 }
 
@@ -222,7 +246,7 @@ a {
   z-index: 2;
   display: grid;
   align-content: center;
-  max-width: 620px;
+  max-width: 560px;
   gap: 20px;
   padding-top: 52px;
 }
@@ -234,10 +258,10 @@ a {
 }
 
 .hero-copy h1 {
-  max-width: 6.8ch;
+  max-width: 6.6ch;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(4.5rem, 7.8vw, 7.4rem);
+  font-size: clamp(4.2rem, 6.9vw, 6.6rem);
   font-weight: 900;
   line-height: 0.78;
   text-shadow: 8px 8px 0 rgba(236, 65, 48, 0.72);
@@ -326,7 +350,7 @@ a {
   font-size: 0.82rem;
 }
 
-.blueprint-section,
+.projects-section,
 .lore-section,
 .game-section,
 .final-section {
@@ -350,12 +374,12 @@ a {
   line-height: 0.92;
 }
 
-.blueprint-section {
+.projects-section {
   background: #121212;
   color: #f8f2dc;
 }
 
-.blueprint-grid {
+.project-rail {
   display: grid;
   max-width: 1120px;
   grid-template-columns: 1fr 1fr;
@@ -363,7 +387,34 @@ a {
   margin: 0 auto;
 }
 
-.blueprint-grid article {
+.project-column {
+  display: grid;
+  gap: 12px;
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(248, 242, 220, 0.42);
+  border-radius: 8px;
+  color: #f7c948;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  background: rgba(248, 242, 220, 0.04);
+}
+
+.column-title strong {
+  font-size: 1.35rem;
+}
+
+.project-card {
+  display: grid;
+  min-height: 210px;
+  align-content: space-between;
+  gap: 16px;
   padding: 18px;
   border: 1px solid rgba(248, 242, 220, 0.42);
   border-radius: 8px;
@@ -374,22 +425,40 @@ a {
   background-size: 18px 18px;
 }
 
-.blueprint-grid h3 {
-  margin: 0 0 14px;
-  font-size: 1rem;
+.project-card h3 {
+  margin: 8px 0 0;
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  line-height: 0.9;
+}
+
+.project-card p {
+  margin: 0;
+  color: rgba(248, 242, 220, 0.82);
+  font-weight: 650;
+}
+
+.project-tag {
+  display: inline-flex;
+  padding: 5px 8px;
+  border: 1px solid rgba(248, 242, 220, 0.34);
+  border-radius: 999px;
+  color: #f7c948;
+  font-size: 0.7rem;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
-.blueprint-grid ol {
-  display: grid;
-  gap: 12px;
-  margin: 0;
-  padding-left: 22px;
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.blueprint-grid li {
-  color: rgba(248, 242, 220, 0.84);
-  font-weight: 650;
+.project-links .social-link {
+  min-height: 36px;
+  padding: 0 10px;
+  font-size: 0.86rem;
 }
 
 .fact-grid {
@@ -659,22 +728,22 @@ a {
     min-width: 0;
   }
 
-  .placeholder-frame {
+  .video-badge {
     width: 68%;
     box-shadow: 8px 8px 0 #121212;
   }
 
-  .placeholder-frame span,
-  .placeholder-frame small {
+  .video-badge span,
+  .video-badge small {
     font-size: 0.66rem;
     line-height: 1.05;
   }
 
-  .placeholder-frame span {
+  .video-badge span {
     max-width: 16ch;
   }
 
-  .placeholder-frame strong {
+  .video-badge strong {
     font-size: clamp(2.2rem, 12vw, 3.4rem);
   }
 
@@ -698,7 +767,7 @@ a {
     box-sizing: border-box;
   }
 
-  .blueprint-section,
+  .projects-section,
   .lore-section,
   .game-section,
   .final-section {
@@ -709,7 +778,7 @@ a {
     display: none;
   }
 
-  .blueprint-grid {
+  .project-rail {
     grid-template-columns: 1fr;
   }
 
