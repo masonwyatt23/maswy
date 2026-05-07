@@ -6,22 +6,27 @@ import { SocialLink } from './SocialLink'
 export function HeroScene() {
   const [sectionRef, progress] = useSectionProgress<HTMLElement>()
   const videoRef = useRef<HTMLVideoElement | null>(null)
+  const metadataReady = useRef(false)
   const heroStage = Math.round(progress * 100)
   const tilt = progress * 18 - 6
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const syncVideo = () => {
-      if (!Number.isFinite(video.duration) || video.duration <= 0) return
-      video.currentTime = clamp(progress) * video.duration
+    const markReady = () => {
+      metadataReady.current = true
     }
+    if (video.readyState >= 1) markReady()
+    video.addEventListener('loadedmetadata', markReady)
+    return () => video.removeEventListener('loadedmetadata', markReady)
+  }, [])
 
-    if (video.readyState >= 1) syncVideo()
-    video.addEventListener('loadedmetadata', syncVideo)
-    return () => video.removeEventListener('loadedmetadata', syncVideo)
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !metadataReady.current) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!Number.isFinite(video.duration) || video.duration <= 0) return
+    video.currentTime = clamp(progress) * video.duration
   }, [progress])
 
   return (

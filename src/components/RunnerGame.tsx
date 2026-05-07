@@ -1,6 +1,8 @@
 import { Gamepad2, RotateCcw, Trophy } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+type RunnerStatus = 'ready' | 'running' | 'crashed'
+
 type RunnerEntity = {
   id: number
   kind: 'obstacle' | 'powerup'
@@ -22,14 +24,8 @@ type Particle = {
   color: string
 }
 
-export function RunnerGame() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const requestRef = useRef<number | null>(null)
-  const [score, setScore] = useState(0)
-  const [combo, setCombo] = useState(1)
-  const [best, setBest] = useState(() => Number(localStorage.getItem('maswy-runner-best') ?? 0))
-  const [status, setStatus] = useState<'ready' | 'running' | 'crashed'>('ready')
-  const stateRef = useRef({
+function createInitialState() {
+  return {
     y: 0,
     velocity: 0,
     speed: 4.2,
@@ -41,24 +37,21 @@ export function RunnerGame() {
     particles: [] as Particle[],
     nextId: 1,
     lastSpawn: 0,
-    status: 'ready' as 'ready' | 'running' | 'crashed',
-  })
+    status: 'ready' as RunnerStatus,
+  }
+}
+
+export function RunnerGame() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const requestRef = useRef<number | null>(null)
+  const [score, setScore] = useState(0)
+  const [combo, setCombo] = useState(1)
+  const [best, setBest] = useState(() => Number(localStorage.getItem('maswy-runner-best') ?? 0))
+  const [status, setStatus] = useState<RunnerStatus>('ready')
+  const stateRef = useRef(createInitialState())
 
   const resetGame = useCallback(() => {
-    stateRef.current = {
-      y: 0,
-      velocity: 0,
-      speed: 4.2,
-      score: 0,
-      combo: 1,
-      shield: 0,
-      floor: 0,
-      entities: [],
-      particles: [],
-      nextId: 1,
-      lastSpawn: 0,
-      status: 'ready',
-    }
+    stateRef.current = createInitialState()
     setScore(0)
     setCombo(1)
     setStatus('ready')
@@ -146,16 +139,23 @@ export function RunnerGame() {
 
         if (time - state.lastSpawn > Math.max(640, 1260 - state.score * 7)) {
           const isPowerup = Math.random() > 0.76
-          const obstacleHeight = isPowerup ? 26 : 32 + Math.random() * 36
           const labels = isPowerup ? ['ship', 'gh', 'ai', 'focus'] : ['bug', 'email', 'scope', 'deck']
+          let color: string
+          if (isPowerup) {
+            color = '#f7c948'
+          } else if (Math.random() > 0.5) {
+            color = '#ed3b2f'
+          } else {
+            color = '#1f9a68'
+          }
           state.entities.push({
             id: state.nextId,
             kind: isPowerup ? 'powerup' : 'obstacle',
             label: labels[Math.floor(Math.random() * labels.length)],
             x: width + 20,
             width: isPowerup ? 42 : 34 + Math.random() * 24,
-            height: obstacleHeight,
-            color: isPowerup ? '#f7c948' : Math.random() > 0.5 ? '#ed3b2f' : '#1f9a68',
+            height: isPowerup ? 26 : 32 + Math.random() * 36,
+            color,
             points: isPowerup ? 7 : 1,
             passed: false,
           })
