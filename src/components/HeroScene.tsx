@@ -5,57 +5,92 @@ import { SocialLink } from './SocialLink'
 
 const memeBeats = [
   {
-    eyebrow: 'Yogi Berra',
-    title: "It ain't over till it's over.",
-    body: 'Baseball logic. Product roadmap logic. Scrolling through this page logic.',
-    stat: 'classic',
+    quote: 'The only thing we have to fear is fear itself.',
+    person: 'Franklin D. Roosevelt',
+    source: '1933 inaugural address',
+    image: '/media/quotes/fdr.jpg',
   },
   {
-    eyebrow: 'Muhammad Ali',
-    title: 'I am the greatest.',
-    body: 'An acceptable amount of confidence when the hero video has this much budget.',
-    stat: 'float',
+    quote: 'Ask not what your country can do for you.',
+    person: 'John F. Kennedy',
+    source: '1961 inaugural address',
+    image: '/media/quotes/jfk.jpg',
   },
   {
-    eyebrow: 'Steve Jobs',
-    title: 'Stay hungry. Stay foolish.',
-    body: 'Also: stay hydrated. This page is doing a lot.',
-    stat: 'garage energy',
+    quote: 'Speak softly and carry a big stick.',
+    person: 'Theodore Roosevelt',
+    source: 'classic Roosevelt line',
+    image: '/media/quotes/teddy.jpg',
   },
   {
-    eyebrow: 'Oscar Wilde',
-    title: 'I can resist everything except temptation.',
-    body: 'The temptation, unfortunately, was adding a cinematic scroll sequence.',
-    stat: 'valid',
+    quote: 'Those who deny freedom to others deserve it not for themselves.',
+    person: 'Abraham Lincoln',
+    source: 'letter to Henry L. Pierce',
+    image: '/media/quotes/lincoln.jpg',
   },
   {
-    eyebrow: 'Mark Twain',
-    title: 'The report of my death was an exaggeration.',
-    body: 'Useful when someone says personal websites are dead.',
-    stat: 'still posting',
+    quote: 'We are the change that we seek.',
+    person: 'Barack Obama',
+    source: 'campaign-trail refrain',
+    image: '/media/quotes/obama.jpg',
   },
   {
-    eyebrow: 'Neil Armstrong',
-    title: 'One small step for man, one giant leap for mankind.',
-    body: 'One tiny scroll for you. One dramatic robe reveal for the internet.',
-    stat: 'moon logic',
+    quote: 'I am the greatest.',
+    person: 'Muhammad Ali',
+    source: 'heavyweight confidence',
+    image: '/media/quotes/ali.jpg',
   },
   {
-    eyebrow: 'Theodore Roosevelt',
-    title: 'Speak softly and carry a big stick; you will go far.',
-    body: 'Modern translation: quiet taste, loud execution.',
-    stat: 'big stick',
+    quote: "I'm just here so I won't get fined.",
+    person: 'Marshawn Lynch',
+    source: 'Super Bowl media day',
+    image: '/media/quotes/marshawn.jpg',
+  },
+  {
+    quote: 'We talking about practice.',
+    person: 'Allen Iverson',
+    source: 'press conference legend',
+    image: '/media/quotes/iverson.jpg',
+  },
+  {
+    quote: 'I am not a role model.',
+    person: 'Charles Barkley',
+    source: 'Nike ad era',
+    image: '/media/quotes/barkley.jpg',
+  },
+  {
+    quote: "Job's not finished.",
+    person: 'Kobe Bryant',
+    source: '2009 Finals mindset',
+    image: '/media/quotes/kobe.jpg',
+  },
+  {
+    quote: 'Can you dig it?',
+    person: "Shaquille O'Neal",
+    source: 'Shaq-sized theater',
+    image: '/media/quotes/shaq.jpg',
+  },
+  {
+    quote: 'The dawgs are in the building.',
+    person: 'Shane Gillis',
+    source: 'comedy-world energy',
+    image: '/media/quotes/gillis.jpg',
   },
 ]
 
 const beatRanges = [
-  [0.1, 0.2],
-  [0.21, 0.31],
-  [0.32, 0.42],
-  [0.43, 0.53],
+  [0.06, 0.16],
+  [0.14, 0.24],
+  [0.22, 0.32],
+  [0.3, 0.4],
+  [0.38, 0.48],
+  [0.46, 0.56],
   [0.54, 0.64],
-  [0.65, 0.76],
-  [0.77, 0.91],
+  [0.62, 0.72],
+  [0.7, 0.8],
+  [0.78, 0.88],
+  [0.86, 0.96],
+  [0.92, 1],
 ]
 
 export function HeroScene() {
@@ -63,7 +98,7 @@ export function HeroScene() {
   const heroStage = Math.round(progress * 100)
   const getBeatStyle = (index: number) => {
     const [start, end] = beatRanges[index]
-    const fade = 0.035
+    const fade = 0.055
     const opacity = Math.max(0, Math.min((progress - start) / fade, (end - progress) / fade, 1))
     const shift = `${Math.max(-34, Math.min(18, (progress - start) * -52))}px`
 
@@ -121,14 +156,13 @@ export function HeroScene() {
             <article
               className="hero-meme-card"
               style={getBeatStyle(index)}
-              key={beat.title}
+              key={beat.quote}
             >
+              <img src={beat.image} alt="" loading="lazy" />
               <div>
-                <p>{beat.eyebrow}</p>
-                <h2>{beat.title}</h2>
-                <span>{beat.body}</span>
+                <p>{beat.source}</p>
+                <h2>"{beat.quote}" - {beat.person}</h2>
               </div>
-              <strong>{beat.stat}</strong>
             </article>
           ))}
         </div>
