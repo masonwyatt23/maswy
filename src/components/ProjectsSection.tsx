@@ -1,4 +1,4 @@
-import { type Project, publicProjects, showcaseProjects } from '../data/profile'
+import { ashlrGitHubProjects, type Project, publicProjects, showcaseProjects } from '../data/profile'
 import { SocialLink } from './SocialLink'
 
 export function ProjectsSection() {
@@ -16,10 +16,19 @@ export function ProjectsSection() {
       <div className="project-rail">
         <div className="project-column">
           <div className="column-title">
-            <span>Open Source</span>
+            <span>Mason OSS</span>
             <strong>{publicProjects.length}</strong>
           </div>
           {publicProjects.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </div>
+        <div className="project-column">
+          <div className="column-title">
+            <span>Ashlr GitHub</span>
+            <strong>{ashlrGitHubProjects.length}</strong>
+          </div>
+          {ashlrGitHubProjects.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
         </div>

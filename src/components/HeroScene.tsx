@@ -45,6 +45,11 @@ export function HeroScene() {
           </div>
         </div>
 
+        <div className="hero-video-focus" aria-hidden="true">
+          <span>scroll scrub cinematic</span>
+          <strong>video gets the room now</strong>
+        </div>
+
         <div className="hero-meme-rail" aria-hidden="true">
           <span>founder cinematic loading: {heroStage}%</span>
           <span>board meeting? side quest.</span>

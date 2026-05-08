@@ -18,15 +18,7 @@ export function NoodsModal({ open, onClose }: { open: boolean; onClose: () => vo
         close
       </button>
       <figure className="noods-frame" aria-label="Pasta noodles covered in sauce">
-        <div className="pasta-plate" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-          <i />
-          <i />
-          <i />
-        </div>
+        <img src="/media/saucy-noods.webp" alt="Saucy Noods spicy chicken noodles on a colorful table" />
         <figcaption>saucy noods. legally pasta.</figcaption>
       </figure>
     </div>

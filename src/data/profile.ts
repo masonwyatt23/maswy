@@ -55,6 +55,51 @@ export const publicProjects: Project[] = [
   },
 ]
 
+export const ashlrGitHubProjects: Project[] = [
+  {
+    name: 'idle',
+    tag: 'ashlr github',
+    copy: 'Native macOS menu-bar app for orchestrating DePIN passive-income apps on Apple Silicon.',
+    repo: 'https://github.com/ashlrai/idle',
+    live: 'https://idle.ashlr.ai',
+  },
+  {
+    name: 'ashlr-plugin',
+    tag: 'ashlr github',
+    copy: 'Open-source Claude Code plugin for token-efficient Read, Grep, and Edit workflows.',
+    repo: 'https://github.com/ashlrai/ashlr-plugin',
+    live: 'https://plugin.ashlr.ai/',
+  },
+  {
+    name: 'phantom-secrets',
+    tag: 'ashlr github',
+    copy: 'Local proxy and MCP layer that swaps real secrets for safe phm_ tokens in agent workflows.',
+    repo: 'https://github.com/ashlrai/phantom-secrets',
+    live: 'https://phm.dev/',
+  },
+  {
+    name: 'webfetch',
+    tag: 'ashlr github',
+    copy: 'License-first image layer with federated providers, MCP support, and TypeScript/Python SDKs.',
+    repo: 'https://github.com/ashlrai/webfetch',
+    live: 'https://getwebfetch.com',
+  },
+  {
+    name: 'morphkit',
+    tag: 'ashlr github',
+    copy: 'Semantic AI agent that converts TypeScript and React web apps into native SwiftUI iOS apps.',
+    repo: 'https://github.com/ashlrai/morphkit',
+    live: 'https://morphkit.dev',
+  },
+  {
+    name: 'ashlr-stack',
+    tag: 'ashlr github',
+    copy: 'CLI and MCP control plane for provisioning, wiring, and operating third-party dev services.',
+    repo: 'https://github.com/ashlrai/ashlr-stack',
+    live: 'https://stack.ashlr.ai',
+  },
+]
+
 export const showcaseProjects: Project[] = [
   {
     name: 'ashlr.ai',
