@@ -40,7 +40,7 @@ function App() {
         <p className="kicker">end</p>
         <h2>That is the site.</h2>
         <p>
-          Projects, GitHub, and socials are all linked. There is also pasta.
+          Projects, GitHub, and socials are all linked, and there is this:
         </p>
         <button className="noods-button" type="button" onClick={() => setShowNoods(true)}>
           Saucy noods
