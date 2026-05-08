@@ -29,7 +29,9 @@ export function SiteBackdrop() {
     const minSeekDelta = 1 / 48
 
     const getScrollProgress = () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight
+      const hero = document.querySelector<HTMLElement>('.hero-section')
+      const scrollable = hero ? hero.offsetHeight - window.innerHeight : document.documentElement.scrollHeight - window.innerHeight
+
       return clamp(scrollable > 0 ? window.scrollY / scrollable : 0)
     }
 
