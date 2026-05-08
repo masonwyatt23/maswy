@@ -23,6 +23,7 @@ export type Project = {
   name: string
   tag: string
   copy: string
+  preview: string
   repo?: string
   live?: string
 }
@@ -30,27 +31,31 @@ export type Project = {
 export const publicProjects: Project[] = [
   {
     name: 'Stargaze',
-    tag: 'open source',
-    copy: 'Swipe right, star repos, boost makers. Indie GitHub discovery with actual taste.',
+    tag: 'Open source',
+    copy: 'GitHub discovery for finding small projects worth watching.',
+    preview: '/media/projects/stargaze.jpg',
     repo: 'https://github.com/masonwyatt23/stargaze',
     live: 'https://stargaze-evero.vercel.app',
   },
   {
     name: 'TypeForge',
-    tag: 'open source',
-    copy: 'Competitive typing game with audio, particles, combos, and Guitar Hero mode.',
+    tag: 'Open source',
+    copy: 'A fast typing game with effects, combos, and rhythm-game modes.',
+    preview: '/media/projects/typeforge.jpg',
     repo: 'https://github.com/masonwyatt23/typeforge',
   },
   {
     name: 'CashFlow Empire',
-    tag: 'open source',
-    copy: 'Roblox tycoon with monetization, quests, achievements, and scheduled events.',
+    tag: 'Open source',
+    copy: 'A Roblox tycoon prototype with quests, achievements, and live events.',
+    preview: '/media/projects/cashflow-empire.jpg',
     repo: 'https://github.com/masonwyatt23/cashflow-empire',
   },
   {
     name: 'AI Chef',
-    tag: 'open source',
-    copy: 'Restaurant profile and menu/cocktail idea generator with an AI chef assistant.',
+    tag: 'Open source',
+    copy: 'A restaurant assistant for menu ideas, cocktail concepts, and profile generation.',
+    preview: '/media/projects/ai-chef.jpg',
     repo: 'https://github.com/masonwyatt23/AI-chef',
   },
 ]
@@ -58,43 +63,49 @@ export const publicProjects: Project[] = [
 export const ashlrGitHubProjects: Project[] = [
   {
     name: 'idle',
-    tag: 'ashlr github',
-    copy: 'Native macOS menu-bar app for orchestrating DePIN passive-income apps on Apple Silicon.',
+    tag: 'Ashlr',
+    copy: 'Native macOS menu-bar app for orchestrating DePIN apps on Apple Silicon.',
+    preview: '/media/projects/idle.jpg',
     repo: 'https://github.com/ashlrai/idle',
     live: 'https://idle.ashlr.ai',
   },
   {
     name: 'ashlr-plugin',
-    tag: 'ashlr github',
-    copy: 'Open-source Claude Code plugin for token-efficient Read, Grep, and Edit workflows.',
+    tag: 'Ashlr',
+    copy: 'Claude Code plugin for token-efficient Read, Grep, and Edit workflows.',
+    preview: '/media/projects/ashlr-plugin.jpg',
     repo: 'https://github.com/ashlrai/ashlr-plugin',
     live: 'https://plugin.ashlr.ai/',
   },
   {
     name: 'phantom-secrets',
-    tag: 'ashlr github',
-    copy: 'Local proxy and MCP layer that swaps real secrets for safe phm_ tokens in agent workflows.',
+    tag: 'Ashlr',
+    copy: 'Local proxy and MCP layer for keeping real secrets out of agent contexts.',
+    preview: '/media/projects/phantom-secrets.jpg',
     repo: 'https://github.com/ashlrai/phantom-secrets',
     live: 'https://phm.dev/',
   },
   {
     name: 'webfetch',
-    tag: 'ashlr github',
-    copy: 'License-first image layer with federated providers, MCP support, and TypeScript/Python SDKs.',
+    tag: 'Ashlr',
+    copy: 'License-first image search layer with MCP support and TypeScript/Python SDKs.',
+    preview: '/media/projects/webfetch.jpg',
     repo: 'https://github.com/ashlrai/webfetch',
     live: 'https://getwebfetch.com',
   },
   {
     name: 'morphkit',
-    tag: 'ashlr github',
-    copy: 'Semantic AI agent that converts TypeScript and React web apps into native SwiftUI iOS apps.',
+    tag: 'Ashlr',
+    copy: 'Agent system for converting TypeScript and React apps into SwiftUI iOS apps.',
+    preview: '/media/projects/morphkit.jpg',
     repo: 'https://github.com/ashlrai/morphkit',
     live: 'https://morphkit.dev',
   },
   {
     name: 'ashlr-stack',
-    tag: 'ashlr github',
-    copy: 'CLI and MCP control plane for provisioning, wiring, and operating third-party dev services.',
+    tag: 'Ashlr',
+    copy: 'CLI and MCP control plane for provisioning and operating external dev services.',
+    preview: '/media/projects/ashlr-stack.jpg',
     repo: 'https://github.com/ashlrai/ashlr-stack',
     live: 'https://stack.ashlr.ai',
   },
@@ -103,25 +114,29 @@ export const ashlrGitHubProjects: Project[] = [
 export const showcaseProjects: Project[] = [
   {
     name: 'ashlr.ai',
-    tag: 'company',
-    copy: 'The main thing. AI-native systems for the kind of work that should not be duct taped forever.',
+    tag: 'Company',
+    copy: 'AI-native systems for teams that need durable tools, automation, and infrastructure.',
+    preview: '/media/projects/ashlr-ai.jpg',
     live: 'https://ashlr.ai',
   },
   {
     name: 'TourVault',
-    tag: 'private build',
-    copy: 'Golf Performance OS for elite golfers, data, coaching, and unfairly serious workflows.',
+    tag: 'Private build',
+    copy: 'Golf performance software for player data, coaching workflows, and training plans.',
+    preview: '/media/projects/tourvault.jpg',
     live: 'https://tourvault.vercel.app',
   },
   {
     name: 'Cotidie',
-    tag: 'private build',
-    copy: 'Life-OS daemon for scheduling, ingest pollers, coach loops, and personal leverage.',
+    tag: 'Private build',
+    copy: 'Personal operating system for schedules, ingest loops, and daily planning.',
+    preview: '/media/projects/cotidie.svg',
   },
   {
     name: 'Ye Universe',
-    tag: 'private build',
-    copy: 'Interactive visual explorer for music, samples, analysis, and curated listening paths.',
+    tag: 'Private build',
+    copy: 'Interactive explorer for music, samples, analysis, and curated listening paths.',
+    preview: '/media/projects/ye-universe.jpg',
     live: 'https://yeuniverse.com',
   },
 ]
