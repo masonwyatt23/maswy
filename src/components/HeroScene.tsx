@@ -1,44 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
-import { heroPoster, heroVideo, profile } from '../data/profile'
-import { clamp, useSectionProgress } from '../lib/useSectionProgress'
+import { profile } from '../data/profile'
+import { useSectionProgress } from '../lib/useSectionProgress'
 import { PronunciationChip } from './PronunciationChip'
 import { SocialLink } from './SocialLink'
 
 export function HeroScene() {
   const [sectionRef, progress] = useSectionProgress<HTMLElement>()
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-  const frameRef = useRef<number | null>(null)
-  const [metadataReady, setMetadataReady] = useState(false)
   const heroStage = Math.round(progress * 100)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    const markReady = () => setMetadataReady(true)
-    if (video.readyState >= 1) markReady()
-    video.addEventListener('loadedmetadata', markReady)
-    return () => video.removeEventListener('loadedmetadata', markReady)
-  }, [])
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video || !metadataReady) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    if (!Number.isFinite(video.duration) || video.duration <= 0) return
-
-    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
-    frameRef.current = requestAnimationFrame(() => {
-      video.currentTime = clamp(progress) * video.duration
-      frameRef.current = null
-    })
-
-    return () => {
-      if (frameRef.current !== null) {
-        cancelAnimationFrame(frameRef.current)
-        frameRef.current = null
-      }
-    }
-  }, [progress, metadataReady])
 
   return (
     <section
@@ -48,22 +15,6 @@ export function HeroScene() {
       aria-label="maswy profile intro"
     >
       <div className="hero-sticky">
-        <div className="hero-backdrop" aria-hidden="true">
-          <video
-            ref={videoRef}
-            className="hero-video"
-            src={heroVideo}
-            poster={heroPoster}
-            muted
-            playsInline
-            preload="auto"
-            aria-label="Psychedelic maswy hero montage"
-          />
-          <div className="hero-video-shade" />
-          <div className="hero-grid" />
-          <div className="scanlines" />
-        </div>
-
         <div className="hero-chrome" aria-hidden="true">
           <span>MASWY_OS</span>
           <span>1998/2026</span>

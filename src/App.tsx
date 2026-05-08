@@ -5,6 +5,7 @@ import { LoreSection } from './components/LoreSection'
 import { NoodsModal } from './components/NoodsModal'
 import { ProjectsSection } from './components/ProjectsSection'
 import { RunnerGame } from './components/RunnerGame'
+import { SiteBackdrop } from './components/SiteBackdrop'
 import { profile } from './data/profile'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <main>
+      <SiteBackdrop />
       <HeroScene />
       <ProjectsSection />
       <LoreSection />
