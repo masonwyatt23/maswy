@@ -55,7 +55,7 @@ a {
 .hero-section {
   position: relative;
   z-index: 1;
-  min-height: 940svh;
+  min-height: 650svh;
   color: #f8f2dc;
   isolation: isolate;
 }
@@ -104,11 +104,11 @@ a {
   display: grid;
   align-content: center;
   box-sizing: border-box;
-  width: min(760px, 100%);
-  max-width: min(760px, 100%);
-  gap: 14px;
+  width: clamp(440px, 40vw, 660px);
+  max-width: calc(100vw - 48px);
+  gap: 12px;
   min-height: auto;
-  padding: 18px;
+  padding: 16px;
   border: 1px solid rgba(248, 242, 220, 0.22);
   border-radius: 10px;
   background: rgba(7, 7, 7, 0.34);
@@ -133,11 +133,11 @@ a {
   max-width: 7.8ch;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(4rem, 9.4vw, 8.2rem);
+  font-size: clamp(3.4rem, 5.2vw, 5.4rem);
   font-weight: 900;
-  line-height: 0.78;
+  line-height: 0.82;
   text-shadow:
-    8px 8px 0 rgba(236, 65, 48, 0.78),
+    6px 6px 0 rgba(236, 65, 48, 0.78),
     0 22px 60px rgba(0, 0, 0, 0.64);
 }
 
@@ -358,8 +358,8 @@ a {
 }
 
 .hero-copy p:not(.kicker) {
-  max-width: 38rem;
-  font-size: clamp(1.05rem, 4vw, 1.45rem);
+  max-width: 33rem;
+  font-size: clamp(1rem, 1.35vw, 1.22rem);
   font-weight: 650;
 }
 
@@ -411,7 +411,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  max-width: 620px;
+  max-width: 540px;
 }
 
 .game-topline button,
@@ -884,7 +884,7 @@ a {
 
 @media (max-width: 760px) {
   .hero-section {
-    min-height: 780svh;
+    min-height: 560svh;
   }
 
   .hero-sticky {
