@@ -37,11 +37,11 @@ export function HeroScene() {
             . Part portfolio, part arcade cabinet, part questionable executive decision.
           </p>
           <div className="hero-actions" aria-label="Profile links">
-            <SocialLink href={profile.links.linkedin} label="LinkedIn" textIcon="in" />
-            <SocialLink href={profile.links.github} label="GitHub" textIcon="gh" />
-            <SocialLink href={profile.links.substack} label="Substack" textIcon="ss" />
-            <SocialLink href={profile.links.instagram} label="Instagram" textIcon="ig" />
-            <SocialLink href={profile.links.x} label="X" textIcon="X" />
+            <SocialLink href={profile.links.linkedin} label="LinkedIn" />
+            <SocialLink href={profile.links.github} label="GitHub" />
+            <SocialLink href={profile.links.substack} label="Substack" />
+            <SocialLink href={profile.links.instagram} label="Instagram" />
+            <SocialLink href={profile.links.x} label="X" />
           </div>
         </div>
 
