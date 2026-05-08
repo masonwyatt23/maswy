@@ -20,7 +20,11 @@ a {
 .site-backdrop {
   z-index: 0;
   pointer-events: none;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
   background:
+    url('/media/maswy-hero-poster.jpg') center / contain no-repeat,
     radial-gradient(circle at 18% 20%, rgba(236, 65, 48, 0.34), transparent 30%),
     radial-gradient(circle at 84% 14%, rgba(50, 211, 145, 0.28), transparent 28%),
     #070707;
@@ -973,15 +977,17 @@ a {
   }
 
   .site-backdrop-video {
+    display: block;
     object-fit: contain;
     object-position: center;
-    transform: scale(0.98);
+    opacity: 1;
+    transform: scale(1);
   }
 
   .site-backdrop-shade {
     background:
-      linear-gradient(180deg, rgba(7, 7, 7, 0.12) 0%, rgba(7, 7, 7, 0.3) 38%, rgba(7, 7, 7, 0.7) 100%),
-      linear-gradient(90deg, rgba(7, 7, 7, 0.42), rgba(7, 7, 7, 0.16));
+      linear-gradient(180deg, rgba(7, 7, 7, 0.04) 0%, rgba(7, 7, 7, 0.18) 44%, rgba(7, 7, 7, 0.58) 100%),
+      linear-gradient(90deg, rgba(7, 7, 7, 0.18), rgba(7, 7, 7, 0.08));
   }
 
   .hero-copy {
@@ -990,7 +996,7 @@ a {
     min-height: auto;
     padding: 14px;
     gap: 16px;
-    background: rgba(7, 7, 7, 0.22);
+    background: rgba(7, 7, 7, 0.16);
     backdrop-filter: none;
   }
 

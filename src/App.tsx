@@ -43,7 +43,7 @@ function App() {
           Projects, GitHub, and socials are all linked. There is also pasta.
         </p>
         <button className="noods-button" type="button" onClick={() => setShowNoods(true)}>
-          Open pasta
+          Saucy noods
         </button>
       </section>
 

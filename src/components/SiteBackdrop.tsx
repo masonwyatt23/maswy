@@ -14,7 +14,12 @@ export function SiteBackdrop() {
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    const markReady = () => setMetadataReady(true)
+    const markReady = () => {
+      if (video.currentTime === 0 && Number.isFinite(video.duration) && video.duration > 0) {
+        video.currentTime = 0.001
+      }
+      setMetadataReady(true)
+    }
     if (video.readyState >= 1) markReady()
     video.addEventListener('loadedmetadata', markReady)
     return () => video.removeEventListener('loadedmetadata', markReady)
