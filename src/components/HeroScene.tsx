@@ -5,34 +5,49 @@ import { SocialLink } from './SocialLink'
 
 const memeBeats = [
   {
-    eyebrow: '0.18x executive presence',
-    title: 'The annual review is just a fog machine with equity paperwork.',
-    body: 'A cloaked board member has entered the chat. Nobody knows the agenda. Everyone agrees the deck needs one more slide.',
-    stat: 'synergy: cursed',
+    eyebrow: '2015',
+    title: 'Hotline Bling',
+    body: 'Drakeposting, but the rejected option is pretending portfolio sites should be normal.',
+    stat: 'less corporate',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Drake_-_Hotline_Bling.png?width=640',
+    alt: 'Hotline Bling cover art',
+    credit: 'Public domain text logo',
   },
   {
-    eyebrow: '0.34x founder mode',
-    title: 'He said "quick prototype" and the server grew lore.',
-    body: 'Somewhere between deploy preview and production, the website became a cinematic universe with compliance concerns.',
-    stat: 'scope creep: dressed formally',
+    eyebrow: '1951',
+    title: 'Einstein Said Relax',
+    body: 'Peak genius energy is taking the work seriously and absolutely nothing else.',
+    stat: 'big brain, unserious face',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Albert_Einstein_sticks_his_tongue.jpg?width=640',
+    alt: 'Albert Einstein sticking out his tongue',
+    credit: 'Arthur Sasse / Commons',
   },
   {
-    eyebrow: '0.52x internet artifact',
-    title: 'The KPI is whether the robe looks disappointed in you.',
-    body: 'If the video pauses here, that is not buffering. That is the masked investor silently reconsidering your burn rate.',
-    stat: 'runway: emotionally complex',
+    eyebrow: '2012',
+    title: 'Grumpy Cat Approves',
+    body: 'The official review: not terrible. Historically, that is a standing ovation.',
+    stat: 'ship it',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Grumpy_Cat_(14534417224).jpg?width=640',
+    alt: 'Grumpy Cat at VidCon',
+    credit: 'Gage Skidmore / CC BY-SA',
   },
   {
-    eyebrow: '0.70x due diligence',
-    title: 'Every hallway is a funnel. Every funnel is haunted.',
-    body: 'Marketing asked for authenticity. Product shipped a marble palace, one mysterious cape, and a pronunciation chip.',
-    stat: 'CAC: cloak acquisition cost',
+    eyebrow: '1969',
+    title: 'One Small Step',
+    body: 'One giant leap for clicking a personal website and somehow landing in a sci-fi hallway.',
+    stat: 'moonwalk the scroll',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Neil_Armstrong.jpg?width=640',
+    alt: 'Neil Armstrong after the Apollo 11 moonwalk',
+    credit: 'NASA / public domain',
   },
   {
-    eyebrow: '0.87x final boss energy',
-    title: 'The exit strategy is walking dramatically toward the next section.',
-    body: 'You have now watched enough cinema to legally call this a portfolio. Please proceed to the actual evidence.',
-    stat: 'vibes: audited',
+    eyebrow: 'always',
+    title: 'Facepalm Checkpoint',
+    body: 'If this page had a product manager, this is where they would ask whether the cloak is in scope.',
+    stat: 'it is now',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Facepalm.svg?width=640',
+    alt: 'Facepalm illustration',
+    credit: 'ShakataGaNai / CC BY-SA',
   },
 ]
 
@@ -109,9 +124,13 @@ export function HeroScene() {
               style={getBeatStyle(index)}
               key={beat.title}
             >
-              <p>{beat.eyebrow}</p>
-              <h2>{beat.title}</h2>
-              <span>{beat.body}</span>
+              <img src={beat.image} alt={beat.alt} loading="lazy" />
+              <div>
+                <p>{beat.eyebrow}</p>
+                <h2>{beat.title}</h2>
+                <span>{beat.body}</span>
+                <small>{beat.credit}</small>
+              </div>
               <strong>{beat.stat}</strong>
             </article>
           ))}
