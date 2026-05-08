@@ -319,14 +319,25 @@ a {
     transform 160ms ease;
 }
 
+.social-link > span:not(.brand-icon) {
+  color: #121212;
+}
+
+.social-link > svg {
+  color: #2f2b24;
+}
+
 .social-link:hover,
 .social-link:focus-visible {
   border-color: #121212;
   color: #121212;
+  background:
+    linear-gradient(180deg, #ffffff, #f1ead6),
+    #fffdf7;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.94),
     0 16px 36px rgba(0, 0, 0, 0.34),
-    0 0 0 4px rgba(247, 201, 72, 0.2);
+    0 0 0 4px rgba(255, 253, 247, 0.28);
   transform: translateY(-2px);
 }
 
