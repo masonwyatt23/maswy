@@ -665,7 +665,7 @@ a {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
   gap: 12px;
 }
 
@@ -709,7 +709,7 @@ a {
 
 .project-body {
   display: grid;
-  min-height: 214px;
+  min-height: 190px;
   align-content: space-between;
   gap: 14px;
   padding: 16px;
