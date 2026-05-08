@@ -139,7 +139,7 @@ export function RunnerGame() {
 
         if (time - state.lastSpawn > Math.max(640, 1260 - state.score * 7)) {
           const isPowerup = Math.random() > 0.76
-          const labels = isPowerup ? ['ship', 'gh', 'ai', 'focus'] : ['bug', 'email', 'scope', 'deck']
+          const labels = isPowerup ? ['ship', 'gh', 'ai', 'focus'] : ['bug', 'mail', 'scope', 'deck']
           let color: string
           if (isPowerup) {
             color = '#f7c948'
@@ -237,9 +237,9 @@ export function RunnerGame() {
         context.fillStyle = '#fffdf7'
         context.font = '700 22px Inter, system-ui, sans-serif'
         context.textAlign = 'center'
-        context.fillText(state.status === 'crashed' ? 'runway incident' : 'tap to ship', width / 2, height / 2 - 8)
+        context.fillText(state.status === 'crashed' ? 'crashed' : 'tap to jump', width / 2, height / 2 - 8)
         context.font = '500 13px Inter, system-ui, sans-serif'
-        context.fillText('jump bugs, collect yellow powerups', width / 2, height / 2 + 20)
+        context.fillText('avoid blocks. grab yellow.', width / 2, height / 2 + 20)
       }
 
       requestRef.current = requestAnimationFrame(draw)
@@ -258,8 +258,8 @@ export function RunnerGame() {
   return (
     <section className="game-section" aria-label="Mini runner game">
       <div className="section-heading">
-        <p className="kicker">mandatory productivity hazard</p>
-        <h2>Maswy Run: Ship Mode</h2>
+        <p className="kicker">small game</p>
+        <h2>Maswy Run</h2>
       </div>
       <div className="game-shell">
         <div className="game-topline">

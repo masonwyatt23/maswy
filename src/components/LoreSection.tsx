@@ -6,25 +6,25 @@ export function LoreSection() {
     {
       icon: <BriefcaseBusiness />,
       title: 'Currently',
-      copy: `Building ${profile.company}, pretending the calendar is not real.`,
+      copy: `Building ${profile.company} and the products around it.`,
     },
     {
       icon: <GraduationCap />,
       title: 'Previously',
-      copy: `Graduated from ${profile.graduation}. Retired from dining hall strategy.`,
+      copy: `Graduated from ${profile.graduation}.`,
     },
     {
       icon: <Sparkles />,
       title: 'Known as',
-      copy: 'maswy, by college buddies and the company people enabling the bit.',
+      copy: 'maswy online. Mason in normal settings.',
     },
   ]
 
   return (
     <section className="lore-section" aria-label="Quick profile facts">
       <div className="section-heading">
-        <p className="kicker">the official unofficial file</p>
-        <h2>Small profile. Large questionable energy.</h2>
+        <p className="kicker">basic context</p>
+        <h2>Short version.</h2>
       </div>
       <div className="fact-grid">
         {facts.map((fact) => (

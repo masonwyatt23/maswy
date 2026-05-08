@@ -973,9 +973,9 @@ a {
   }
 
   .site-backdrop-video {
-    object-fit: cover;
-    object-position: 58% center;
-    transform: scale(1.01);
+    object-fit: contain;
+    object-position: center;
+    transform: scale(0.98);
   }
 
   .site-backdrop-shade {
@@ -990,6 +990,8 @@ a {
     min-height: auto;
     padding: 14px;
     gap: 16px;
+    background: rgba(7, 7, 7, 0.22);
+    backdrop-filter: none;
   }
 
   .hero-copy h1 {

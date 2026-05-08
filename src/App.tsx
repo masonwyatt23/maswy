@@ -28,23 +28,22 @@ function App() {
       <LoreSection />
 
       <section className="ticker" aria-label="Profile ticker">
-        <span>college friends said maswy and the brand department lost control</span>
-        <span>ashlr.ai founder mode with side-quest energy</span>
-        <span>github link gets front-row seating</span>
-        <span title={`turns 23 on ${profile.birthday}`}>hidden stat unlocked only by hovering like a nerd</span>
+        <span>builder, founder, product person</span>
+        <span>ashlr.ai and related tools</span>
+        <span>github has the receipts</span>
+        <span title={`turns 23 on ${profile.birthday}`}>birthday: {profile.birthday}</span>
       </section>
 
       <RunnerGame />
 
       <section className="final-section">
-        <p className="kicker">deep internet footer</p>
-        <h2>That is enough personal branding for one scroll.</h2>
+        <p className="kicker">end</p>
+        <h2>That is the site.</h2>
         <p>
-          Hero cinematic installed, GitHub is properly front-row, projects are on display, and the
-          pasta button remains exactly as serious as it sounds.
+          Projects, GitHub, and socials are all linked. There is also pasta.
         </p>
         <button className="noods-button" type="button" onClick={() => setShowNoods(true)}>
-          Saucy noods
+          Open pasta
         </button>
       </section>
 

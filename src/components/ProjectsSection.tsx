@@ -5,17 +5,17 @@ export function ProjectsSection() {
   return (
     <section className="projects-section" aria-label="Projects">
       <div className="section-heading">
-        <p className="kicker">Selected work</p>
+        <p className="kicker">work</p>
         <h2>Projects</h2>
         <div className="project-summary" aria-label="Project groups">
-          <span>{publicProjects.length} Mason projects</span>
-          <span>{ashlrGitHubProjects.length} Ashlr repos</span>
-          <span>{showcaseProjects.length} showcase builds</span>
+          <span>{publicProjects.length} Mason</span>
+          <span>{ashlrGitHubProjects.length} Ashlr</span>
+          <span>{showcaseProjects.length} live sites</span>
         </div>
       </div>
-      <ProjectGroup title="Showcase" projects={showcaseProjects} />
+      <ProjectGroup title="Live sites" projects={showcaseProjects} />
       <ProjectGroup title="Ashlr" projects={ashlrGitHubProjects} />
-      <ProjectGroup title="Open source" projects={publicProjects} />
+      <ProjectGroup title="Mason" projects={publicProjects} />
     </section>
   )
 }

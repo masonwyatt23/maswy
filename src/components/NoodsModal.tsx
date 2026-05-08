@@ -13,13 +13,13 @@ export function NoodsModal({ open, onClose }: { open: boolean; onClose: () => vo
   if (!open) return null
 
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-label="Saucy noods">
+    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-label="Pasta image">
       <button ref={closeButtonRef} className="modal-close" type="button" onClick={onClose}>
         close
       </button>
       <figure className="noods-frame" aria-label="Pasta noodles covered in sauce">
-        <img src="/media/saucy-noods.webp" alt="Saucy Noods spicy chicken noodles on a colorful table" />
-        <figcaption>saucy noods. legally pasta.</figcaption>
+        <img src="/media/saucy-noods.webp" alt="Spicy chicken noodles on a colorful table" />
+        <figcaption>pasta.</figcaption>
       </figure>
     </div>
   )

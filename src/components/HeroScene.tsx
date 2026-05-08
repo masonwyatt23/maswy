@@ -7,73 +7,73 @@ const memeBeats = [
   {
     quote: 'The only thing we have to fear is fear itself.',
     person: 'Franklin D. Roosevelt',
-    source: '1933 inaugural address',
+    source: 'FDR',
     image: '/media/quotes/fdr.jpg',
   },
   {
     quote: 'Ask not what your country can do for you.',
     person: 'John F. Kennedy',
-    source: '1961 inaugural address',
+    source: 'JFK',
     image: '/media/quotes/jfk.jpg',
   },
   {
     quote: 'Speak softly and carry a big stick.',
     person: 'Theodore Roosevelt',
-    source: 'classic Roosevelt line',
+    source: 'Teddy Roosevelt',
     image: '/media/quotes/teddy.jpg',
   },
   {
     quote: 'Those who deny freedom to others deserve it not for themselves.',
     person: 'Abraham Lincoln',
-    source: 'letter to Henry L. Pierce',
+    source: 'Lincoln',
     image: '/media/quotes/lincoln.jpg',
   },
   {
     quote: 'We are the change that we seek.',
     person: 'Barack Obama',
-    source: 'campaign-trail refrain',
+    source: 'Obama',
     image: '/media/quotes/obama.jpg',
   },
   {
     quote: 'I am the greatest.',
     person: 'Muhammad Ali',
-    source: 'heavyweight confidence',
+    source: 'Ali',
     image: '/media/quotes/ali.jpg',
   },
   {
     quote: "I'm just here so I won't get fined.",
     person: 'Marshawn Lynch',
-    source: 'Super Bowl media day',
+    source: 'Marshawn',
     image: '/media/quotes/marshawn.jpg',
   },
   {
     quote: 'We talking about practice.',
     person: 'Allen Iverson',
-    source: 'press conference legend',
+    source: 'Iverson',
     image: '/media/quotes/iverson.jpg',
   },
   {
     quote: 'I am not a role model.',
     person: 'Charles Barkley',
-    source: 'Nike ad era',
+    source: 'Barkley',
     image: '/media/quotes/barkley.jpg',
   },
   {
     quote: "Job's not finished.",
     person: 'Kobe Bryant',
-    source: '2009 Finals mindset',
+    source: 'Kobe',
     image: '/media/quotes/kobe.jpg',
   },
   {
     quote: 'Can you dig it?',
     person: "Shaquille O'Neal",
-    source: 'Shaq-sized theater',
+    source: 'Shaq',
     image: '/media/quotes/shaq.jpg',
   },
   {
     quote: 'The dawgs are in the building.',
     person: 'Shane Gillis',
-    source: 'comedy-world energy',
+    source: 'Shane Gillis',
     image: '/media/quotes/gillis.jpg',
   },
 ]
@@ -119,11 +119,11 @@ export function HeroScene() {
         <div className="hero-chrome" aria-hidden="true">
           <span>MASWY_OS</span>
           <span>1998/2026</span>
-          <span>FOUNDER MODE</span>
+          <span>BUILD LOG</span>
         </div>
 
         <div className="hero-copy">
-          <p className="kicker">founder. builder. internet side quest.</p>
+          <p className="kicker">builder. founder. products.</p>
           <h1>{profile.alias}.com</h1>
           <PronunciationChip
             display={profile.pronunciation.display}
@@ -131,11 +131,11 @@ export function HeroScene() {
             label={profile.pronunciation.label}
           />
           <p>
-            A suspiciously serious personal site for {profile.name}, founder of{' '}
+            {profile.name} builds web products, tools, and experiments. Founder of{' '}
             <a href={profile.links.ashlr} target="_blank" rel="noopener noreferrer">
               {profile.company}
             </a>
-            . Part portfolio, part arcade cabinet, part questionable executive decision.
+            . This is the index.
           </p>
           <div className="hero-actions" aria-label="Profile links">
             <SocialLink href={profile.links.linkedin} label="LinkedIn" />
@@ -147,8 +147,8 @@ export function HeroScene() {
         </div>
 
         <div className="hero-video-focus" aria-hidden="true">
-          <span>scroll scrub cinematic</span>
-          <strong>video gets the room now</strong>
+          <span>scroll the video</span>
+          <strong>then the work</strong>
         </div>
 
         <div className="hero-meme-beats" aria-label="Scroll memes">
@@ -168,10 +168,10 @@ export function HeroScene() {
         </div>
 
         <div className="hero-meme-rail" aria-hidden="true">
-          <span>founder cinematic loading: {heroStage}%</span>
-          <span>board meeting? side quest.</span>
-          <span>portfolio got a little dramatic</span>
-          <span>official pronunciation department</span>
+          <span>video: {heroStage}%</span>
+          <span>quotes while you scroll</span>
+          <span>projects below</span>
+          <span>name pronunciation included</span>
         </div>
       </div>
     </section>
