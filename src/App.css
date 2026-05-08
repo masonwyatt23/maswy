@@ -292,24 +292,26 @@ a {
 
 .social-link {
   display: inline-flex;
-  min-height: 46px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  padding: 0 15px 0 10px;
-  border: 1px solid rgba(248, 242, 220, 0.38);
+  gap: 10px;
+  padding: 0 15px 0 9px;
+  border: 1px solid rgba(18, 18, 18, 0.42);
   border-radius: 999px;
-  color: #fffdf7;
+  color: #121212;
   font: inherit;
-  font-weight: 850;
+  font-size: 0.98rem;
+  font-weight: 900;
   text-decoration: none;
   background:
-    linear-gradient(180deg, rgba(255, 253, 247, 0.18), rgba(255, 253, 247, 0.07)),
-    rgba(14, 14, 14, 0.64);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 242, 220, 0.94)),
+    #fffdf7;
   box-shadow:
-    inset 0 1px 0 rgba(255, 253, 247, 0.2),
-    0 14px 30px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(14px);
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 14px 30px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(255, 253, 247, 0.22);
+  backdrop-filter: blur(10px);
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
@@ -319,35 +321,65 @@ a {
 
 .social-link:hover,
 .social-link:focus-visible {
-  border-color: rgba(247, 201, 72, 0.76);
-  color: #f7c948;
+  border-color: #121212;
+  color: #121212;
   box-shadow:
-    inset 0 1px 0 rgba(255, 253, 247, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.94),
     0 16px 36px rgba(0, 0, 0, 0.34),
-    0 0 0 4px rgba(247, 201, 72, 0.12);
-  transform: translateY(-1px);
+    0 0 0 4px rgba(247, 201, 72, 0.2);
+  transform: translateY(-2px);
 }
 
 .social-link:active {
   transform: translateY(1px) scale(0.985);
 }
 
-.social-link svg {
-  width: 18px;
-  height: 18px;
+.brand-icon {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  color: #fffdf7;
+  background: #121212;
+}
+
+.brand-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.social-link[href*='linkedin.com'] .brand-icon {
+  background: #0a66c2;
+}
+
+.social-link[href*='github.com'] .brand-icon {
+  background: #181717;
+}
+
+.social-link[href*='substack.com'] .brand-icon {
+  background: #ff6719;
+}
+
+.social-link[href*='instagram.com'] .brand-icon {
+  background:
+    radial-gradient(circle at 30% 105%, #fdf497 0 22%, transparent 23%),
+    radial-gradient(circle at 30% 105%, #fd5949 0 42%, transparent 43%),
+    linear-gradient(135deg, #405de6, #833ab4 42%, #c13584 62%, #fd1d1d 82%, #fcb045);
+}
+
+.social-link[href*='x.com'] .brand-icon {
+  background: #000000;
 }
 
 .text-icon {
   display: inline-grid;
-  width: 28px;
-  height: 28px;
   place-items: center;
-  border-radius: 50%;
-  color: #121212;
-  font-size: 0.72rem;
+  color: inherit;
+  font-size: 0.7rem;
   font-weight: 950;
   text-transform: uppercase;
-  background: #f7c948;
 }
 
 .projects-section,
@@ -479,8 +511,18 @@ a {
 
 .project-links .social-link {
   min-height: 36px;
-  padding: 0 10px;
+  padding: 0 11px 0 7px;
   font-size: 0.86rem;
+}
+
+.project-links .brand-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.project-links .brand-icon svg {
+  width: 13px;
+  height: 13px;
 }
 
 .fact-grid {
