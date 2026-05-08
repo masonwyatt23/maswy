@@ -5,58 +5,57 @@ import { SocialLink } from './SocialLink'
 
 const memeBeats = [
   {
-    eyebrow: '2015',
-    title: 'Hotline Bling',
-    body: 'Drakeposting, but the rejected option is pretending portfolio sites should be normal.',
-    stat: 'less corporate',
-    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Drake_-_Hotline_Bling.png?width=640',
-    alt: 'Hotline Bling cover art',
-    credit: 'Public domain text logo',
+    eyebrow: 'Yogi Berra',
+    title: "It ain't over till it's over.",
+    body: 'Baseball logic. Product roadmap logic. Scrolling through this page logic.',
+    stat: 'classic',
   },
   {
-    eyebrow: '1951',
-    title: 'Einstein Said Relax',
-    body: 'Peak genius energy is taking the work seriously and absolutely nothing else.',
-    stat: 'big brain, unserious face',
-    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Albert_Einstein_sticks_his_tongue.jpg?width=640',
-    alt: 'Albert Einstein sticking out his tongue',
-    credit: 'Arthur Sasse / Commons',
+    eyebrow: 'Muhammad Ali',
+    title: 'I am the greatest.',
+    body: 'An acceptable amount of confidence when the hero video has this much budget.',
+    stat: 'float',
   },
   {
-    eyebrow: '2012',
-    title: 'Grumpy Cat Approves',
-    body: 'The official review: not terrible. Historically, that is a standing ovation.',
-    stat: 'ship it',
-    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Grumpy_Cat_(14534417224).jpg?width=640',
-    alt: 'Grumpy Cat at VidCon',
-    credit: 'Gage Skidmore / CC BY-SA',
+    eyebrow: 'Steve Jobs',
+    title: 'Stay hungry. Stay foolish.',
+    body: 'Also: stay hydrated. This page is doing a lot.',
+    stat: 'garage energy',
   },
   {
-    eyebrow: '1969',
-    title: 'One Small Step',
-    body: 'One giant leap for clicking a personal website and somehow landing in a sci-fi hallway.',
-    stat: 'moonwalk the scroll',
-    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Neil_Armstrong.jpg?width=640',
-    alt: 'Neil Armstrong after the Apollo 11 moonwalk',
-    credit: 'NASA / public domain',
+    eyebrow: 'Oscar Wilde',
+    title: 'I can resist everything except temptation.',
+    body: 'The temptation, unfortunately, was adding a cinematic scroll sequence.',
+    stat: 'valid',
   },
   {
-    eyebrow: 'always',
-    title: 'Facepalm Checkpoint',
-    body: 'If this page had a product manager, this is where they would ask whether the cloak is in scope.',
-    stat: 'it is now',
-    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Facepalm.svg?width=640',
-    alt: 'Facepalm illustration',
-    credit: 'ShakataGaNai / CC BY-SA',
+    eyebrow: 'Mark Twain',
+    title: 'The report of my death was an exaggeration.',
+    body: 'Useful when someone says personal websites are dead.',
+    stat: 'still posting',
+  },
+  {
+    eyebrow: 'Neil Armstrong',
+    title: 'One small step for man, one giant leap for mankind.',
+    body: 'One tiny scroll for you. One dramatic robe reveal for the internet.',
+    stat: 'moon logic',
+  },
+  {
+    eyebrow: 'Theodore Roosevelt',
+    title: 'Speak softly and carry a big stick; you will go far.',
+    body: 'Modern translation: quiet taste, loud execution.',
+    stat: 'big stick',
   },
 ]
 
 const beatRanges = [
-  [0.14, 0.28],
-  [0.29, 0.43],
-  [0.44, 0.58],
-  [0.59, 0.73],
-  [0.74, 0.91],
+  [0.1, 0.2],
+  [0.21, 0.31],
+  [0.32, 0.42],
+  [0.43, 0.53],
+  [0.54, 0.64],
+  [0.65, 0.76],
+  [0.77, 0.91],
 ]
 
 export function HeroScene() {
@@ -64,7 +63,7 @@ export function HeroScene() {
   const heroStage = Math.round(progress * 100)
   const getBeatStyle = (index: number) => {
     const [start, end] = beatRanges[index]
-    const fade = 0.045
+    const fade = 0.035
     const opacity = Math.max(0, Math.min((progress - start) / fade, (end - progress) / fade, 1))
     const shift = `${Math.max(-34, Math.min(18, (progress - start) * -52))}px`
 
@@ -124,12 +123,10 @@ export function HeroScene() {
               style={getBeatStyle(index)}
               key={beat.title}
             >
-              <img src={beat.image} alt={beat.alt} loading="lazy" />
               <div>
                 <p>{beat.eyebrow}</p>
                 <h2>{beat.title}</h2>
                 <span>{beat.body}</span>
-                <small>{beat.credit}</small>
               </div>
               <strong>{beat.stat}</strong>
             </article>

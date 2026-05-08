@@ -188,16 +188,15 @@ a {
   --beat-shift: 0px;
   position: absolute;
   display: grid;
-  grid-template-columns: 116px minmax(0, 1fr);
-  width: min(440px, calc(100vw - 36px));
+  width: min(520px, calc(100vw - 36px));
   gap: 12px;
-  padding: 10px;
+  padding: 18px;
   border: 1px solid rgba(248, 242, 220, 0.32);
   border-radius: 10px;
   color: #fffdf7;
   background:
-    linear-gradient(135deg, rgba(18, 18, 18, 0.82), rgba(18, 18, 18, 0.5)),
-    rgba(7, 7, 7, 0.68);
+    linear-gradient(135deg, rgba(18, 18, 18, 0.92), rgba(18, 18, 18, 0.74)),
+    rgba(7, 7, 7, 0.84);
   box-shadow:
     inset 0 1px 0 rgba(255, 253, 247, 0.18),
     0 24px 70px rgba(0, 0, 0, 0.34);
@@ -237,12 +236,15 @@ a {
   bottom: 24%;
 }
 
-.hero-meme-card img {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 7px;
-  object-fit: cover;
-  background: #f8f2dc;
+.hero-meme-card:nth-child(6) {
+  bottom: 18%;
+  left: clamp(18px, 7vw, 112px);
+  transform: translateY(var(--beat-shift)) rotate(1.2deg);
+}
+
+.hero-meme-card:nth-child(7) {
+  right: clamp(18px, 6vw, 92px);
+  bottom: 24%;
 }
 
 .hero-meme-card div {
@@ -253,8 +255,7 @@ a {
 }
 
 .hero-meme-card p,
-.hero-meme-card h2,
-.hero-meme-card small {
+.hero-meme-card h2 {
   margin: 0;
 }
 
@@ -269,24 +270,16 @@ a {
 
 .hero-meme-card h2 {
   font-family: var(--display);
-  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
-  line-height: 0.92;
+  font-size: clamp(2rem, 3.4vw, 3.45rem);
+  line-height: 0.9;
+  text-wrap: balance;
 }
 
 .hero-meme-card span {
   color: rgba(255, 253, 247, 0.88);
-  font-size: 0.88rem;
+  font-size: 0.96rem;
   font-weight: 700;
-  line-height: 1.18;
-}
-
-.hero-meme-card small {
-  color: rgba(248, 242, 220, 0.58);
-  font-family: var(--mono);
-  font-size: 0.56rem;
-  font-weight: 800;
-  line-height: 1;
-  text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .hero-meme-card strong {
@@ -970,18 +963,18 @@ a {
   }
 
   .hero-meme-card {
-    grid-template-columns: 84px minmax(0, 1fr);
     right: 12px;
     bottom: 13%;
     left: 12px;
     width: auto;
     gap: 10px;
-    padding: 10px;
+    padding: 13px;
     transform: translateY(var(--beat-shift));
   }
 
   .hero-meme-card:nth-child(1),
-  .hero-meme-card:nth-child(3) {
+  .hero-meme-card:nth-child(3),
+  .hero-meme-card:nth-child(6) {
     right: 12px;
     bottom: 13%;
     left: 12px;
@@ -990,7 +983,8 @@ a {
 
   .hero-meme-card:nth-child(2),
   .hero-meme-card:nth-child(4),
-  .hero-meme-card:nth-child(5) {
+  .hero-meme-card:nth-child(5),
+  .hero-meme-card:nth-child(7) {
     right: 12px;
     bottom: 13%;
     left: 12px;
@@ -998,15 +992,11 @@ a {
   }
 
   .hero-meme-card h2 {
-    font-size: clamp(1.05rem, 5.8vw, 1.38rem);
+    font-size: clamp(1.55rem, 8vw, 2.15rem);
   }
 
   .hero-meme-card span {
-    font-size: 0.78rem;
-  }
-
-  .hero-meme-card small {
-    display: none;
+    font-size: 0.84rem;
   }
 
   .hero-meme-card strong {
