@@ -30,7 +30,7 @@ function App() {
       <section className="ticker" aria-label="Profile ticker">
         <span>builder, founder, product person</span>
         <span>ashlr.ai and related tools</span>
-        <span>github has the receipts</span>
+        <span>github has the code</span>
         <span title={`turns 23 on ${profile.birthday}`}>birthday: {profile.birthday}</span>
       </section>
 

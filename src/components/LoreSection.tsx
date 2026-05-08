@@ -1,37 +1,43 @@
-import { BriefcaseBusiness, GraduationCap, Sparkles } from 'lucide-react'
-import { profile } from '../data/profile'
-
 export function LoreSection() {
-  const facts = [
+  const favorites = [
     {
-      icon: <BriefcaseBusiness />,
-      title: 'Currently',
-      copy: `Building ${profile.company} and the products around it.`,
+      label: 'Favorite college',
+      title: 'JMU',
+      copy: 'JMU. Duke Dog. Easy pick.',
+      image: '/media/favorites/jmu-duke-dog.jpg',
+      imageAlt: 'JMU Duke Dog head logo',
     },
     {
-      icon: <GraduationCap />,
-      title: 'Previously',
-      copy: `Graduated from ${profile.graduation}.`,
+      label: 'Favorite team',
+      title: 'Commanders',
+      copy: 'Washington football. I am still here.',
+      image: '/media/favorites/commanders.svg',
+      imageAlt: 'Washington Commanders logo',
     },
     {
-      icon: <Sparkles />,
-      title: 'Known as',
-      copy: 'maswy online. Mason in normal settings.',
+      label: 'Favorite golfer',
+      title: 'Scottie Scheffler',
+      copy: 'Best ball-striker alive. No debate.',
+      image: '/media/favorites/scottie-scheffler.jpg',
+      imageAlt: 'Scottie Scheffler',
     },
   ]
 
   return (
-    <section className="lore-section" aria-label="Quick profile facts">
+    <section className="lore-section" aria-label="Favorites">
       <div className="section-heading">
-        <p className="kicker">basic context</p>
-        <h2>Short version.</h2>
+        <p className="kicker">favorites</p>
+        <h2>Favorites.</h2>
       </div>
       <div className="fact-grid">
-        {facts.map((fact) => (
-          <article className="fact-card" key={fact.title}>
-            <div className="fact-icon">{fact.icon}</div>
-            <h3>{fact.title}</h3>
-            <p>{fact.copy}</p>
+        {favorites.map((favorite) => (
+          <article className="fact-card" key={favorite.title}>
+            <div className="fact-media">
+              <img src={favorite.image} alt={favorite.imageAlt} loading="lazy" />
+            </div>
+            <p className="fact-label">{favorite.label}</p>
+            <h3>{favorite.title}</h3>
+            <p>{favorite.copy}</p>
           </article>
         ))}
       </div>
