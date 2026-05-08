@@ -28,6 +28,7 @@ export function PronunciationChip({ display, speech, label }: PronunciationChipP
     const utterance = new SpeechSynthesisUtterance(speech)
     const utteranceId = utteranceIdRef.current + 1
     utteranceIdRef.current = utteranceId
+    utterance.lang = 'en-US'
     utterance.rate = 0.82
     utterance.pitch = 0.95
     utterance.volume = 1

@@ -4,7 +4,7 @@ export const profile = {
   company: 'ashlr.ai',
   pronunciation: {
     display: 'MAHZ-WHY',
-    speech: 'MAHZ WHY',
+    speech: 'maahz why',
     label: 'pronounced like',
   },
   birthday: 'June 22, 2026',
