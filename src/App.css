@@ -10,6 +10,7 @@ a {
 
 .site-backdrop,
 .site-backdrop-video,
+.site-backdrop-mobile-frame,
 .site-backdrop-shade,
 .site-backdrop-grid,
 .scanlines {
@@ -39,6 +40,14 @@ a {
   transform: scale(0.985);
   transform-origin: center;
   will-change: transform;
+}
+
+.site-backdrop-mobile-frame {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: saturate(1.24) contrast(1.12) brightness(1.02);
 }
 
 .site-backdrop-shade {
@@ -136,7 +145,7 @@ a {
 .lore-section .kicker,
 .game-section .kicker,
 .final-section .kicker {
-  color: #805c00;
+  color: #6f5207;
 }
 
 .hero-copy h1 {
@@ -780,7 +789,7 @@ a {
   display: grid;
   max-width: 1120px;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 14px;
   margin: 0 auto;
 }
 
@@ -793,15 +802,17 @@ a {
   border: 2px solid #121212;
   border-radius: 8px;
   background: #ffffff;
-  box-shadow: 6px 6px 0 #121212;
+  box-shadow:
+    6px 6px 0 #121212,
+    0 20px 54px rgba(18, 18, 18, 0.08);
 }
 
 .fact-card:nth-child(2) {
-  background: #eaf7ff;
+  background: #f3f8fb;
 }
 
 .fact-card:nth-child(3) {
-  background: #f5ecff;
+  background: #f8f4fb;
 }
 
 .fact-media {
@@ -837,7 +848,7 @@ a {
 
 .fact-card .fact-label {
   margin: 0;
-  color: #805c00;
+  color: #6f5207;
   font-family: var(--mono);
   font-size: 0.74rem;
   font-weight: 900;
@@ -1010,6 +1021,15 @@ a {
     object-position: center;
     opacity: 1;
     transform: scale(1);
+  }
+
+  .site-backdrop-mobile-frame {
+    display: block;
+    object-position: center;
+  }
+
+  .site-backdrop-video {
+    opacity: 0;
   }
 
   .site-backdrop-shade {

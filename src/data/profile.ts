@@ -7,7 +7,7 @@ export const profile = {
     speech: 'maahz why',
     label: 'pronounced like',
   },
-  birthday: 'June 22, 2026',
+  birthday: 'June 22',
   graduation: 'JMU, May 2025',
   links: {
     linkedin: 'https://www.linkedin.com/in/mason-wyatt-932400201',
