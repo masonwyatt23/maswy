@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { heroPoster, heroVideo, profile } from '../data/profile'
 import { clamp, useSectionProgress } from '../lib/useSectionProgress'
+import { PronunciationChip } from './PronunciationChip'
 import { SocialLink } from './SocialLink'
 
 export function HeroScene() {
@@ -72,6 +73,11 @@ export function HeroScene() {
         <div className="hero-copy">
           <p className="kicker">founder. builder. internet side quest.</p>
           <h1>{profile.alias}.com</h1>
+          <PronunciationChip
+            display={profile.pronunciation.display}
+            speech={profile.pronunciation.speech}
+            label={profile.pronunciation.label}
+          />
           <p>
             A suspiciously serious personal site for {profile.name}, founder of{' '}
             <a href={profile.links.ashlr} target="_blank" rel="noopener noreferrer">
@@ -92,6 +98,7 @@ export function HeroScene() {
           <span>founder cinematic loading: {heroStage}%</span>
           <span>board meeting? side quest.</span>
           <span>portfolio got a little dramatic</span>
+          <span>official pronunciation department</span>
         </div>
       </div>
     </section>

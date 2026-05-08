@@ -2,6 +2,11 @@ export const profile = {
   name: 'Mason Wyatt',
   alias: 'maswy',
   company: 'ashlr.ai',
+  pronunciation: {
+    display: 'MAHZ-WHY',
+    speech: 'MAHZ WHY',
+    label: 'pronounced like',
+  },
   birthday: 'June 22, 2026',
   graduation: 'JMU, May 2025',
   links: {
