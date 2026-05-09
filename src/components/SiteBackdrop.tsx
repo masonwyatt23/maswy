@@ -2,8 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { heroPoster, heroVideo } from '../data/profile'
 import { clamp } from '../lib/useSectionProgress'
 
-const mobileFrameCount = 121
+const mobileFrameCount = 241
 const getMobileFrame = (index: number) => `/media/hero-frames/frame-${String(index + 1).padStart(3, '0')}.jpg`
+const preloadedMobileFrames = new Set<number>()
+const loadedMobileFrames = new Set<number>()
+const mobileFrameWaiters = new Map<number, Set<() => void>>()
+let mobileFrameCacheStarted = false
 
 export function SiteBackdrop() {
   const videoRef = useRef<HTMLVideoElement | null>(null)
@@ -13,41 +17,10 @@ export function SiteBackdrop() {
   const currentProgressRef = useRef(0)
   const lastSeekTimeRef = useRef(-1)
   const lastMobileFrameRef = useRef(-1)
+  const displayedMobileFrameRef = useRef(0)
   const [metadataReady, setMetadataReady] = useState(false)
   const [mobileFrame, setMobileFrame] = useState(0)
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const shouldUseMobileFrames = () => window.matchMedia('(max-width: 760px)').matches || !window.matchMedia('(pointer: fine)').matches
-    const updateMobileFrame = () => {
-      if (!shouldUseMobileFrames()) return
-
-      const frameIndex = Math.min(mobileFrameCount - 1, Math.round(getHeroScrollProgress() * (mobileFrameCount - 1)))
-      if (frameIndex === lastMobileFrameRef.current) return
-
-      lastMobileFrameRef.current = frameIndex
-      setMobileFrame(frameIndex)
-      preloadMobileFrames(frameIndex)
-    }
-
-    updateMobileFrame()
-    window.addEventListener('scroll', updateMobileFrame, { passive: true })
-    window.addEventListener('touchmove', updateMobileFrame, { passive: true })
-    window.addEventListener('resize', updateMobileFrame)
-    window.addEventListener('orientationchange', updateMobileFrame)
-    window.visualViewport?.addEventListener('resize', updateMobileFrame)
-    window.visualViewport?.addEventListener('scroll', updateMobileFrame)
-
-    return () => {
-      window.removeEventListener('scroll', updateMobileFrame)
-      window.removeEventListener('touchmove', updateMobileFrame)
-      window.removeEventListener('resize', updateMobileFrame)
-      window.removeEventListener('orientationchange', updateMobileFrame)
-      window.visualViewport?.removeEventListener('resize', updateMobileFrame)
-      window.visualViewport?.removeEventListener('scroll', updateMobileFrame)
-    }
-  }, [])
+  const [pendingMobileFrame, setPendingMobileFrame] = useState<number | null>(null)
 
   useEffect(() => {
     const video = videoRef.current
@@ -73,7 +46,7 @@ export function SiteBackdrop() {
     const finePointer = window.matchMedia('(pointer: fine)').matches
     const mobileViewport = window.matchMedia('(max-width: 760px)').matches
     const useMobileFrames = mobileViewport || !finePointer
-    const progressEase = finePointer ? 0.24 : 0.42
+    const progressEase = finePointer ? 0.24 : 0.34
 
     const seekTo = (time: number, force = false) => {
       const clampedTime = Math.min(video.duration, Math.max(0, time))
@@ -82,8 +55,13 @@ export function SiteBackdrop() {
 
       if (useMobileFrames && (force || mobileFrameIndex !== lastMobileFrameRef.current)) {
         lastMobileFrameRef.current = mobileFrameIndex
-        setMobileFrame(mobileFrameIndex)
-        preloadMobileFrames(mobileFrameIndex)
+        requestMobileFrame(mobileFrameIndex, () => {
+          if (lastMobileFrameRef.current === mobileFrameIndex && displayedMobileFrameRef.current !== mobileFrameIndex) {
+            setPendingMobileFrame(mobileFrameIndex)
+          }
+        })
+        preloadMobileFrames(mobileFrameIndex, targetProgressRef.current >= currentProgressRef.current ? 1 : -1)
+        warmMobileFrameCache(mobileFrameIndex)
       }
 
       if (useMobileFrames) return true
@@ -127,13 +105,11 @@ export function SiteBackdrop() {
       frameRef.current = null
 
       const delta = targetProgressRef.current - currentProgressRef.current
-      const nextProgress = useMobileFrames
-        ? targetProgressRef.current
-        : currentProgressRef.current + delta * progressEase
+      const nextProgress = currentProgressRef.current + delta * progressEase
       currentProgressRef.current = nextProgress
       seekTo(nextProgress * video.duration)
 
-      if (Math.abs(delta) > 0.001) {
+      if (Math.abs(delta) > 0.0008) {
         scheduleScrub()
       } else {
         currentProgressRef.current = targetProgressRef.current
@@ -164,6 +140,14 @@ export function SiteBackdrop() {
     }
   }, [metadataReady])
 
+  const commitPendingMobileFrame = () => {
+    if (pendingMobileFrame === null) return
+
+    displayedMobileFrameRef.current = pendingMobileFrame
+    setMobileFrame(pendingMobileFrame)
+    setPendingMobileFrame(null)
+  }
+
   return (
     <div className="site-backdrop" aria-hidden="true">
       <video
@@ -179,9 +163,18 @@ export function SiteBackdrop() {
         className="site-backdrop-mobile-frame"
         src={getMobileFrame(mobileFrame)}
         alt=""
-        decoding="sync"
+        decoding="async"
         fetchPriority="high"
       />
+      {pendingMobileFrame !== null && pendingMobileFrame !== mobileFrame ? (
+        <img
+          className="site-backdrop-mobile-frame site-backdrop-mobile-frame-buffer"
+          src={getMobileFrame(pendingMobileFrame)}
+          alt=""
+          decoding="async"
+          onLoad={commitPendingMobileFrame}
+        />
+      ) : null}
       <div className="site-backdrop-shade" />
       <div className="site-backdrop-grid" />
       <div className="scanlines" />
@@ -189,14 +182,82 @@ export function SiteBackdrop() {
   )
 }
 
-function preloadMobileFrames(index: number) {
+function preloadMobileFrames(index: number, direction = 1) {
   if (typeof window === 'undefined') return
 
-  for (const nextIndex of [index + 1, index + 2, index - 1]) {
+  const nearbyIndexes = [
+    index,
+    index + direction,
+    index + direction * 2,
+    index + direction * 3,
+    index + direction * 4,
+    index + direction * 5,
+    index - direction,
+    index - direction * 2,
+    index - direction * 3,
+  ]
+
+  for (const nextIndex of nearbyIndexes) {
     if (nextIndex < 0 || nextIndex >= mobileFrameCount) continue
-    const image = new Image()
-    image.src = getMobileFrame(nextIndex)
+    requestMobileFrame(nextIndex)
   }
+}
+
+function warmMobileFrameCache(centerIndex: number) {
+  if (typeof window === 'undefined' || mobileFrameCacheStarted) return
+
+  mobileFrameCacheStarted = true
+
+  const orderedIndexes = Array.from({ length: mobileFrameCount }, (_, index) => index).sort(
+    (left, right) => Math.abs(left - centerIndex) - Math.abs(right - centerIndex),
+  )
+
+  const loadBatch = () => {
+    for (let count = 0; count < 16 && orderedIndexes.length > 0; count += 1) {
+      const nextIndex = orderedIndexes.shift()
+      if (nextIndex === undefined) continue
+
+      requestMobileFrame(nextIndex)
+    }
+
+    if (orderedIndexes.length > 0) {
+      window.setTimeout(loadBatch, 45)
+    }
+  }
+
+  window.setTimeout(loadBatch, 40)
+}
+
+function requestMobileFrame(index: number, onReady?: () => void) {
+  if (typeof window === 'undefined') return
+  if (index < 0 || index >= mobileFrameCount) return
+
+  if (loadedMobileFrames.has(index)) {
+    onReady?.()
+    return
+  }
+
+  if (onReady) {
+    const waiters = mobileFrameWaiters.get(index) ?? new Set<() => void>()
+    waiters.add(onReady)
+    mobileFrameWaiters.set(index, waiters)
+  }
+
+  if (preloadedMobileFrames.has(index)) return
+
+  preloadedMobileFrames.add(index)
+  const image = new Image()
+  image.decoding = 'async'
+  const markReady = () => {
+    loadedMobileFrames.add(index)
+    const waiters = mobileFrameWaiters.get(index)
+    mobileFrameWaiters.delete(index)
+    waiters?.forEach((waiter) => waiter())
+  }
+  image.onload = () => {
+    image.decode().then(markReady).catch(markReady)
+  }
+  image.src = getMobileFrame(index)
 }
 
 function getHeroScrollProgress() {
