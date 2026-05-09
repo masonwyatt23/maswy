@@ -1,23 +1,23 @@
 export function LoreSection() {
   const favorites = [
     {
-      label: 'Favorite college',
+      label: 'College',
       title: 'JMU',
-      copy: 'James Madison University.',
-      image: '/media/favorites/jmu-duke-dog.jpg',
+      copy: 'James Madison University',
+      image: '/media/favorites/jmu-duke-dog.png',
       imageAlt: 'JMU Duke Dog head logo',
     },
     {
-      label: 'Favorite team',
+      label: 'Team',
       title: 'Commanders',
-      copy: 'Washington Commanders.',
+      copy: 'Washington Commanders',
       image: '/media/favorites/commanders-new.png',
       imageAlt: 'Washington Commanders 2026 alternate mark',
     },
     {
-      label: 'Favorite golfer',
+      label: 'Golfer',
       title: 'Scottie Scheffler',
-      copy: 'Scottie Scheffler.',
+      copy: 'PGA Tour',
       image: '/media/favorites/scottie-scheffler.jpg',
       imageAlt: 'Scottie Scheffler',
     },
